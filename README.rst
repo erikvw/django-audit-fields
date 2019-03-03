@@ -45,7 +45,7 @@ Most models require an audit trail. If so, add the ``HistoricalRecord`` model ma
 
 .. code-block:: python
 
-    from edc_model.model.models import HistoricalRecord
+    from simple_history.models import HistoricalRecord
     
     class MyModel(AuditUuidModelMixin, models.Model):
         
