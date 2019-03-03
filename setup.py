@@ -34,6 +34,7 @@ setup(
     keywords='django audit model fields',
     install_requires=[
         'arrow',
+        'django-revision',
     ],
     classifiers=[
         'Environment :: Web Environment',
