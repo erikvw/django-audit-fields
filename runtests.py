@@ -6,9 +6,8 @@ import sys
 
 from django.conf import settings
 from django.test.runner import DiscoverRunner
-from os.path import abspath, dirname, join
 
-APP_NAME = 'django_audit_fields'
+app_name = 'django_audit_fields'
 
 
 class DisableMigrations:
@@ -28,15 +27,17 @@ installed_apps = [
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.staticfiles',
-    f'{APP_NAME}.apps.AppConfig',
+    'django_revision.apps.AppConfig',
+    f'{app_name}.apps.AppConfig',
 ]
 
 DEFAULT_SETTINGS = dict(
-    BASE_DIR=join(dirname(dirname(abspath(__file__))), 'django-crypto-fields'),
+    # BASE_DIR=os.path.dirname(os.path.realpath(__file__)),
+    BASE_DIR=os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
     ALLOWED_HOSTS=['localhost'],
     DEBUG=True,
     # AUTH_USER_MODEL='custom_user.CustomUser',
-    ROOT_URLCONF=f'{APP_NAME}.urls',
+    ROOT_URLCONF=f'{app_name}.urls',
     STATIC_URL='/static/',
     INSTALLED_APPS=installed_apps,
     DATABASES={
@@ -70,19 +71,13 @@ DEFAULT_SETTINGS = dict(
     USE_L10N=True,
     USE_TZ=True,
 
-    APP_NAME=f'{APP_NAME}',
-    # AUTO_CREATE_KEYS=DEBUG,
-    VERBOSE_MODE=None,
+    APP_NAME=f'{app_name}',
 
     DEFAULT_FILE_STORAGE='inmemorystorage.InMemoryStorage',
     MIGRATION_MODULES=DisableMigrations(),
     PASSWORD_HASHERS=('django.contrib.auth.hashers.MD5PasswordHasher', ),
 
 )
-
-if not DEFAULT_SETTINGS.get('DEBUG'):
-    DEFAULT_SETTINGS.update(KEY_PATH=join(
-        DEFAULT_SETTINGS.get('BASE_DIR'), 'crypto_fields'))
 
 if os.environ.get("TRAVIS"):
     DEFAULT_SETTINGS.update(
@@ -103,7 +98,7 @@ def main():
         settings.configure(**DEFAULT_SETTINGS)
     django.setup()
     failures = DiscoverRunner(failfast=True).run_tests(
-        [f'{APP_NAME}.tests'])
+        [f'{app_name}.tests'])
     sys.exit(failures)
 
 
