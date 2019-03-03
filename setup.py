@@ -32,7 +32,9 @@ setup(
     long_description=README,
     zip_safe=False,
     keywords='django audit model fields',
-    install_requires=[],
+    install_requires=[
+        'arrow',
+    ],
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
