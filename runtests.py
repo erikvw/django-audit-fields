@@ -8,7 +8,7 @@ from django.conf import settings
 from django.test.runner import DiscoverRunner
 from os.path import abspath, dirname, join
 
-APP_NAME = 'django_crypto_fields'
+APP_NAME = 'django_audit_fields'
 
 
 class DisableMigrations:
@@ -28,8 +28,6 @@ installed_apps = [
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.staticfiles',
-    'django_revision.apps.AppConfig',
-    'edc_device.apps.AppConfig',
     f'{APP_NAME}.apps.AppConfig',
 ]
 

@@ -33,6 +33,7 @@ setup(
     zip_safe=False,
     keywords='django audit model fields',
     install_requires=[
+        "edc_utils",
     ],
     classifiers=[
         'Environment :: Web Environment',

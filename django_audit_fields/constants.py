@@ -8,5 +8,4 @@ AUDIT_MODEL_FIELDS = [
     "user_modified",
     "hostname_created",
     "hostname_modified",
-    "revision",
 ]

@@ -1,6 +1,6 @@
 from django.db import models
-from edc_model_fields.fields import UUIDAutoField
 
+from ..fields import UUIDAutoField
 from .audit_model_mixin import AuditModelMixin
 
 
