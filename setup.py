@@ -9,7 +9,14 @@ with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
 with open(os.path.join(os.path.dirname(__file__), 'VERSION')) as f:
     VERSION = f.read()
 
-tests_require = ['django', 'mysqlclient']
+tests_require = ['django']
+try:
+    travis = os.environ['TRAVIS']
+except KeyError:
+    pass
+else:
+    tests_require.append('mysqlclient')
+
 with open(os.path.join(os.path.dirname(__file__), 'requirements.txt')) as f:
     for line in f:
         tests_require.append(line.strip())
@@ -34,6 +41,7 @@ setup(
     keywords='django audit model fields',
     install_requires=[
         'arrow',
+        'django-revision',
     ],
     classifiers=[
         'Environment :: Web Environment',

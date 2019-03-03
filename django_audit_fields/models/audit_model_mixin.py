@@ -2,6 +2,7 @@ import arrow
 import socket
 
 from django.db import models
+from django_revision.model_mixins import RevisionModelMixin
 
 from ..constants import AUDIT_MODEL_UPDATE_FIELDS
 from ..fields import HostnameModificationField, UserField
@@ -11,7 +12,7 @@ def utcnow():
     return arrow.utcnow().datetime
 
 
-class AuditModelMixin(models.Model):
+class AuditModelMixin(RevisionModelMixin, models.Model):
 
     """Base model class for all models. Adds created and modified'
     values for user, date and hostname (computer).
@@ -47,6 +48,10 @@ class AuditModelMixin(models.Model):
     hostname_modified = HostnameModificationField(
         max_length=50, blank=True, help_text="System field. (modified on every save)"
     )
+
+    device_created = models.CharField(max_length=10, blank=True)
+
+    device_modified = models.CharField(max_length=10, blank=True)
 
     objects = models.Manager()
 

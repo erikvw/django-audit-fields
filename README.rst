@@ -3,6 +3,27 @@
 django-audit-fields
 -------------------
 
+Installation
+============
+	
+.. code-block:: bash
+
+	pip install django_audit_fields
+
+
+Add both ``django_audit_fields`` and ``django_revision`` to INSTALLED_APPS::
+
+	INSTALLED_APPS = [
+		...
+	    "django_revision.apps.AppConfig",
+	    "django_audit_fields.apps.AppConfig",
+	    ...
+]
+
+
+Usage
+============
+
 Add model fields to track creation and modification dates, users and more on save.
 
 
@@ -54,7 +75,7 @@ Most models require an audit trail. If so, add the ``HistoricalRecord`` model ma
         
 
 Notes
------
+=====
 
 User created and modified fields behave as follows:
 
@@ -65,8 +86,8 @@ User created and modified fields behave as follows:
 .. |pypi| image:: https://img.shields.io/pypi/v/django-audit-fields.svg
     :target: https://pypi.python.org/pypi/django-audit-fields
     
-.. |travis| image:: https://travis-ci.org/erikvw/django-audit-fields.svg?branch=develop
-    :target: https://travis-ci.org/erikvw/django-audit-fields
+.. |travis| image:: https://travis-ci.com/erikvw/django-audit-fields.svg?branch=develop
+    :target: https://travis-ci.com/erikvw/django-audit-fields
     
 .. |codecov| image:: https://codecov.io/gh/erikvw/django-audit-fields/branch/develop/graph/badge.svg
   :target: https://codecov.io/gh/erikvw/django-audit-fields
