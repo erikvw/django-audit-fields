@@ -1,0 +1,4 @@
+[run]
+include = django_audit_fields/*
+omit = django_audit_fields/tests/*
+branch = 1
