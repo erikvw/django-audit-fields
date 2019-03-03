@@ -1,10 +1,14 @@
+import arrow
 import socket
 
 from django.db import models
-from edc_utils import get_utcnow
 
 from ..constants import AUDIT_MODEL_UPDATE_FIELDS
 from ..fields import HostnameModificationField, UserField
+
+
+def utcnow():
+    return arrow.utcnow().datetime
 
 
 class AuditModelMixin(models.Model):
@@ -15,9 +19,9 @@ class AuditModelMixin(models.Model):
 
     get_latest_by = "modified"
 
-    created = models.DateTimeField(blank=True, default=get_utcnow)
+    created = models.DateTimeField(blank=True, default=utcnow)
 
-    modified = models.DateTimeField(blank=True, default=get_utcnow)
+    modified = models.DateTimeField(blank=True, default=utcnow)
 
     user_created = UserField(
         max_length=50,
@@ -56,7 +60,7 @@ class AuditModelMixin(models.Model):
             pass
         else:
             kwargs.update({"update_fields": update_fields})
-        dte_modified = get_utcnow()
+        dte_modified = utcnow()
         if not self.id:
             self.created = dte_modified
             self.hostname_created = self.hostname_created[:60]

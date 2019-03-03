@@ -32,9 +32,7 @@ setup(
     long_description=README,
     zip_safe=False,
     keywords='django audit model fields',
-    install_requires=[
-        "edc-utils",
-    ],
+    install_requires=[],
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
