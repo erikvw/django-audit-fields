@@ -34,7 +34,7 @@ Preferably, use a UUID as primary key by declaring your model using ``AuditUuidM
 
 The model mixins ``AuditModelMixin`` and ``AuditUuidModelMixin``:
 
-* add audit fields (user_created, user_modified, date_created, etc);
+* add audit fields (created, modified, user_created, user_modified, hostname_created, hostname_modified);
 
 The model mixin ``AuditUuidModelMixin`` also
 
