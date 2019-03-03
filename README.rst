@@ -65,8 +65,8 @@ User created and modified fields behave as follows:
 .. |pypi| image:: https://img.shields.io/pypi/v/django-audit-fields.svg
     :target: https://pypi.python.org/pypi/django-audit-fields
     
-.. |travis| image:: https://travis-ci.org/erikvw/django-audit-fields.svg?branch=develop
-    :target: https://travis-ci.org/erikvw/django-audit-fields
+.. |travis| image:: https://travis-ci.com/erikvw/django-audit-fields.svg?branch=develop
+    :target: https://travis-ci.com/erikvw/django-audit-fields
     
 .. |codecov| image:: https://codecov.io/gh/erikvw/django-audit-fields/branch/develop/graph/badge.svg
   :target: https://codecov.io/gh/erikvw/django-audit-fields
