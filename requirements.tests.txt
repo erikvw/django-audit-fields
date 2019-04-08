@@ -1,1 +1,1 @@
-mysqlclient
+mysqlclient==1.4.2.post1
