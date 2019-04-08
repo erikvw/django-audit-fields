@@ -9,8 +9,7 @@ audit_fields = [
     "hostname_modified",
 ]
 
-audit_fieldset_tuple = (
-    "Audit", {"classes": ("collapse",), "fields": audit_fields})
+audit_fieldset_tuple = ("Audit", {"classes": ("collapse",), "fields": audit_fields})
 
 
 class ModelAdminAuditFieldsMixin:
