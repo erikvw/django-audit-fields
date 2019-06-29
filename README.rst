@@ -19,7 +19,8 @@ Add both ``django_audit_fields`` and ``django_revision`` to INSTALLED_APPS::
 		...
 	    "django_revision.apps.AppConfig",
 	    "django_audit_fields.apps.AppConfig",
-	    ...]
+	    ...
+    ]
 
 Usage
 =====
