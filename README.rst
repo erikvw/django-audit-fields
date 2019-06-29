@@ -15,11 +15,11 @@ Add both ``django_audit_fields`` and ``django_revision`` to INSTALLED_APPS::
 
 .. code-block:: python
 
-	INSTALLED_APPS = [
-		...
-	    "django_revision.apps.AppConfig",
-	    "django_audit_fields.apps.AppConfig",
-	    ...
+    INSTALLED_APPS = [
+		"...",
+        "django_revision.apps.AppConfig",
+        "django_audit_fields.apps.AppConfig",
+        "...",
     ]
 
 
