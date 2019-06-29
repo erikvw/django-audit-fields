@@ -1,15 +1,28 @@
 import arrow
 import socket
 
+from django.apps import apps as django_apps
 from django.db import models
 from django_revision.model_mixins import RevisionModelMixin
 
 from ..constants import AUDIT_MODEL_UPDATE_FIELDS
 from ..fields import HostnameModificationField, UserField
+from django.conf import settings
 
 
 def utcnow():
     return arrow.utcnow().datetime
+
+
+def update_device_fields(instance):
+    device_id = getattr(settings, "DEVICE_ID", None)
+    app_config = django_apps.get_app_config("edc_device")
+    if not instance.id:
+        device_created = device_id or app_config.device_id
+    else:
+        device_created = instance.device_created
+    device_modified = device_id or app_config.device_id
+    return device_created, device_modified
 
 
 class AuditModelMixin(RevisionModelMixin, models.Model):
@@ -71,6 +84,9 @@ class AuditModelMixin(RevisionModelMixin, models.Model):
             self.hostname_created = self.hostname_created[:60]
         self.modified = dte_modified
         self.hostname_modified = self.hostname_modified[:50]
+
+        self.device_created, self.device_modified = update_device_fields(self)
+
         super().save(*args, **kwargs)
 
     @property
