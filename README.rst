@@ -22,6 +22,7 @@ Add both ``django_audit_fields`` and ``django_revision`` to INSTALLED_APPS::
 	    ...
     ]
 
+
 Usage
 =====
 
