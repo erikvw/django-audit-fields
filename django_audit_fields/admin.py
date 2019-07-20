@@ -23,6 +23,7 @@ class ModelAdminAuditFieldsMixin:
         super().save_model(request, obj, form, change)
 
     def get_list_filter(self, request):
+        super().get_list_filter(request)
         fields = [
             "created",
             "modified",
@@ -31,9 +32,9 @@ class ModelAdminAuditFieldsMixin:
             "hostname_created",
             "hostname_modified",
         ]
-        self.list_filter = list(self.list_filter) + [
-            f for f in fields if f not in self.list_filter
-        ]
+        self.list_filter = [f for f in fields if f not in self.list_filter] + list(
+            self.list_filter
+        )
         return self.list_filter
 
     def get_readonly_fields(self, request, obj=None):
