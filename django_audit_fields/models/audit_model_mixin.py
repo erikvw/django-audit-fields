@@ -2,12 +2,12 @@ import arrow
 import socket
 
 from django.apps import apps as django_apps
+from django.conf import settings
 from django.db import models
 from django_revision.model_mixins import RevisionModelMixin
 
 from ..constants import AUDIT_MODEL_UPDATE_FIELDS
 from ..fields import HostnameModificationField, UserField
-from django.conf import settings
 
 
 def utcnow():
@@ -16,12 +16,18 @@ def utcnow():
 
 def update_device_fields(instance):
     device_id = getattr(settings, "DEVICE_ID", None)
-    app_config = django_apps.get_app_config("edc_device")
+    try:
+        app_config = django_apps.get_app_config("edc_device")
+    except LookupError:
+        pass
+    else:
+        device_id = device_id or app_config.device_id
+
     if not instance.id:
-        device_created = device_id or app_config.device_id
+        device_created = device_id or "00"
     else:
         device_created = instance.device_created
-    device_modified = device_id or app_config.device_id
+    device_modified = device_id or "00"
     return device_created, device_modified
 
 
