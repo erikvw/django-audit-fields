@@ -27,7 +27,6 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         'django.contrib.sites',
         'django.contrib.staticfiles',
         'django_revision.apps.AppConfig',
-        'edc_device.apps.AppConfig',
         f'{app_name}.apps.AppConfig',
     ],
 ).settings
