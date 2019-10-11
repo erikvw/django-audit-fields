@@ -1,5 +1,6 @@
 import re
 import socket
+import getpass
 
 from django.test import TestCase
 
