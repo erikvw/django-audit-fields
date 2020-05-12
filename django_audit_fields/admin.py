@@ -7,6 +7,8 @@ audit_fields = [
     "modified",
     "hostname_created",
     "hostname_modified",
+    "device_created",
+    "device_modified",
 ]
 
 audit_fieldset_tuple = ("Audit", {"classes": ("collapse",), "fields": audit_fields})
@@ -31,6 +33,8 @@ class ModelAdminAuditFieldsMixin:
             "user_modified",
             "hostname_created",
             "hostname_modified",
+            "device_created",
+            "device_modified",
         ]
         self.list_filter = list(self.list_filter) + [
             f for f in fields if f not in self.list_filter
