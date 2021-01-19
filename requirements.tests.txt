@@ -1,1 +1,2 @@
 mysqlclient
+edc-test-utils

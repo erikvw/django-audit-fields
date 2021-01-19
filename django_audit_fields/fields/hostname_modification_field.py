@@ -1,7 +1,7 @@
 import socket
 
 from django.db.models import CharField
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 
 class HostnameModificationField(CharField):
