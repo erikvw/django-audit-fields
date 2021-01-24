@@ -1,2 +1,2 @@
 mysqlclient
-edc-test-utils
+edc-test-utils==0.1.40
