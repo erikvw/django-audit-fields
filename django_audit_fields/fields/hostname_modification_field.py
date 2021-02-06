@@ -13,8 +13,7 @@ class HostnameModificationField(CharField):
         CharField.__init__(self, *args, **kwargs)
 
     def pre_save(self, model_instance, add):
-        """Updates socket.gethostname() on each save.
-        """
+        """Updates socket.gethostname() on each save."""
         value = socket.gethostname()
         setattr(model_instance, self.attname, value)
         return value

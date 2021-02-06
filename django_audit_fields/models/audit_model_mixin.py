@@ -1,6 +1,6 @@
-import arrow
 import socket
 
+import arrow
 from django.apps import apps as django_apps
 from django.conf import settings
 from django.db import models
@@ -77,9 +77,7 @@ class AuditModelMixin(RevisionModelMixin, models.Model):
     def save(self, *args, **kwargs):
         try:
             # don't allow update_fields to bypass these audit fields
-            update_fields = (
-                kwargs.get("update_fields", None) + AUDIT_MODEL_UPDATE_FIELDS
-            )
+            update_fields = kwargs.get("update_fields", None) + AUDIT_MODEL_UPDATE_FIELDS
         except TypeError:
             pass
         else:

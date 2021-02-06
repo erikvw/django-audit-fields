@@ -40,6 +40,4 @@ class ModelAdminAuditFieldsMixin:
     def get_readonly_fields(self, request, obj=None):
         """Add audit fields to readonly_fields."""
         readonly_fields = super().get_readonly_fields(request, obj=obj)
-        return list(readonly_fields) + [
-            f for f in audit_fields if f not in readonly_fields
-        ]
+        return list(readonly_fields) + [f for f in audit_fields if f not in readonly_fields]

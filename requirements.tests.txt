@@ -1,2 +1,0 @@
-mysqlclient
-edc-test-utils
