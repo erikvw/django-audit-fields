@@ -1,4 +1,6 @@
 import socket
+from datetime import datetime
+from typing import Tuple
 
 import arrow
 from django.apps import apps as django_apps
@@ -10,11 +12,11 @@ from ..constants import AUDIT_MODEL_UPDATE_FIELDS
 from ..fields import HostnameModificationField, UserField
 
 
-def utcnow():
+def utcnow() -> datetime:
     return arrow.utcnow().datetime
 
 
-def update_device_fields(instance):
+def update_device_fields(instance: "AuditModelMixin") -> Tuple[str, str]:
     device_id = getattr(settings, "DEVICE_ID", None)
     try:
         app_config = django_apps.get_app_config("edc_device")
