@@ -3,9 +3,15 @@
 django-audit-fields
 -------------------
 
+VERSION
+=======
+* <=0.3.3 (DJ 3.1, py 3.7, 3.8)
+* >=0.3.4 (DJ 3.2+, py 3.9+)
+
+
 Installation
 ============
-	
+
 .. code-block:: bash
 
 	pip install django_audit_fields
@@ -39,7 +45,7 @@ Declare your model using ``AuditModelMixin``
         ...
 
         class Meta(AuditModelMixin.Meta):
-        	pass        
+        	pass
 
 Preferably, use a UUID as primary key by declaring your model using ``AuditUuidModelMixin``
 
@@ -68,12 +74,12 @@ Most models require an audit trail. If so, add the ``HistoricalRecord`` model ma
 .. code-block:: python
 
     from simple_history.models import HistoricalRecord
-    
+
     class MyModel(AuditUuidModelMixin, models.Model):
-        
+
         ...
         history = HistoricalRecord()
-        
+
 
 Notes
 =====
@@ -86,10 +92,10 @@ User created and modified fields behave as follows:
 
 .. |pypi| image:: https://img.shields.io/pypi/v/django-audit-fields.svg
     :target: https://pypi.python.org/pypi/django-audit-fields
-    
+
 .. |travis| image:: https://travis-ci.com/erikvw/django-audit-fields.svg?branch=develop
     :target: https://travis-ci.com/erikvw/django-audit-fields
-    
+
 .. |codecov| image:: https://codecov.io/gh/erikvw/django-audit-fields/branch/develop/graph/badge.svg
   :target: https://codecov.io/gh/erikvw/django-audit-fields
 

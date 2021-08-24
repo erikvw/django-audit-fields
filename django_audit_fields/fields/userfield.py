@@ -13,7 +13,8 @@ class UserField(CharField):
         kwargs.setdefault("blank", True)
         CharField.__init__(self, *args, **kwargs)
 
-    def get_os_username(self):
+    @staticmethod
+    def get_os_username():
         return pwd.getpwuid(os.getuid()).pw_name
 
     def pre_save(self, model_instance, add):
