@@ -1,5 +1,4 @@
-import os
-import pwd
+import getpass
 
 from django.db.models import CharField
 from django.utils.translation import gettext as _
@@ -13,9 +12,8 @@ class UserField(CharField):
         kwargs.setdefault("blank", True)
         CharField.__init__(self, *args, **kwargs)
 
-    @staticmethod
-    def get_os_username():
-        return pwd.getpwuid(os.getuid()).pw_name
+    def get_os_username(self):
+        return getpass.getuser()
 
     def pre_save(self, model_instance, add):
         """Updates username created on ADD only."""

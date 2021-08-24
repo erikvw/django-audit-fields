@@ -1,7 +1,6 @@
-import os
-import pwd
 import re
 import socket
+import getpass
 
 from django.test import TestCase
 
@@ -64,8 +63,9 @@ class TestFields(TestCase):
         self.assertEqual(hostname, test_model.hostname_created)
 
     def test_user_created(self):
-        """Assert user is set on created ONLY unless explicitly set."""
-        pwd.getpwuid(os.getuid()).pw_name
+        """Assert user is set on created ONLY unless explicitly set.
+        """
+        getpass.getuser()
         test_model = TestModel.objects.create(f1="monday")
         self.assertEqual("", test_model.user_created)
         test_model.user_created = ""
@@ -77,8 +77,9 @@ class TestFields(TestCase):
         self.assertEqual("jason", test_model.user_created)
 
     def test_user_modified(self):
-        """Assert user is always updated."""
-        user = pwd.getpwuid(os.getuid()).pw_name
+        """Assert user is always updated.
+        """
+        user = getpass.getuser()
         test_model = TestModel(f1="monday")
         test_model.save()
         self.assertEqual("", test_model.user_modified)
