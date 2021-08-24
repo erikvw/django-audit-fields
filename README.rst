@@ -68,12 +68,11 @@ Most models require an audit trail. If so, add the ``HistoricalRecord`` model ma
 
 .. code-block:: python
 
-    from simple_history.models import HistoricalRecord
+    from simple_history.models import HistoricalRecords
 
     class MyModel(AuditUuidModelMixin, models.Model):
         ...
-        history = HistoricalRecord()
-
+        history = HistoricalRecords()
 
 Notes
 =====
