@@ -1,17 +1,23 @@
-|pypi| |travis| |codecov| |downloads|
+|pypi| |actions| |codecov| |downloads|
 
 django-audit-fields
 -------------------
 
+VERSION
+=======
+* <=0.3.3 (DJ 3.1, py 3.7, 3.8)
+* >=0.3.4 (DJ 3.2+, py 3.9+)
+
+
 Installation
 ============
-	
+
 .. code-block:: bash
 
-	pip install django_audit_fields
+    pip install django_audit_fields
 
 
-Add both ``django_audit_fields`` and ``django_revision`` to INSTALLED_APPS::
+Add both ``django_audit_fields`` and ``django_revision`` to INSTALLED_APPS
 
 .. code-block:: python
 
@@ -20,7 +26,6 @@ Add both ``django_audit_fields`` and ``django_revision`` to INSTALLED_APPS::
         "django_revision.apps.AppConfig",
         "django_audit_fields.apps.AppConfig",
         "..."]
-
 
 Usage
 =====
@@ -35,11 +40,9 @@ Declare your model using ``AuditModelMixin``
     from django_audit_fields.model_mixins import AuditModelMixin
 
     class MyModel(AuditModelMixin,  models.Model):
-
         ...
-
         class Meta(AuditModelMixin.Meta):
-        	pass        
+            pass
 
 Preferably, use a UUID as primary key by declaring your model using ``AuditUuidModelMixin``
 
@@ -48,11 +51,9 @@ Preferably, use a UUID as primary key by declaring your model using ``AuditUuidM
     from django_audit_fields.model_mixins import AuditUuidModelMixin
 
     class MyModel(AuditUuidModelMixin, models.Model):
-
         ...
-
         class Meta(AuditUuidModelMixin.Meta)
-        	pass
+            pass
 
 The model mixins ``AuditModelMixin`` and ``AuditUuidModelMixin``:
 
@@ -68,12 +69,11 @@ Most models require an audit trail. If so, add the ``HistoricalRecord`` model ma
 .. code-block:: python
 
     from simple_history.models import HistoricalRecord
-    
+
     class MyModel(AuditUuidModelMixin, models.Model):
-        
         ...
         history = HistoricalRecord()
-        
+
 
 Notes
 =====
@@ -86,12 +86,12 @@ User created and modified fields behave as follows:
 
 .. |pypi| image:: https://img.shields.io/pypi/v/django-audit-fields.svg
     :target: https://pypi.python.org/pypi/django-audit-fields
-    
-.. |travis| image:: https://travis-ci.com/erikvw/django-audit-fields.svg?branch=develop
-    :target: https://travis-ci.com/erikvw/django-audit-fields
-    
+
 .. |codecov| image:: https://codecov.io/gh/erikvw/django-audit-fields/branch/develop/graph/badge.svg
   :target: https://codecov.io/gh/erikvw/django-audit-fields
 
 .. |downloads| image:: https://pepy.tech/badge/django-audit-fields
    :target: https://pepy.tech/project/django-audit-fields
+
+.. |actions| image:: https://github.com/erikvw/django-audit-fields/workflows/build/badge.svg?branch=develop
+  :target: https://github.com/erikvw/django-audit-fields/actions?query=workflow:build

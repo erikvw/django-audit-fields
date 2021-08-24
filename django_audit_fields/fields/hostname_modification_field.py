@@ -1,7 +1,7 @@
 import socket
 
 from django.db.models import CharField
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 
 class HostnameModificationField(CharField):
@@ -13,8 +13,7 @@ class HostnameModificationField(CharField):
         CharField.__init__(self, *args, **kwargs)
 
     def pre_save(self, model_instance, add):
-        """Updates socket.gethostname() on each save.
-        """
+        """Updates socket.gethostname() on each save."""
         value = socket.gethostname()
         setattr(model_instance, self.attname, value)
         return value
