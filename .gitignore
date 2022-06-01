@@ -1,7 +1,9 @@
+_version.py
 .project
 .pydevproject
 .settings/
-
+.env
+.etc
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
