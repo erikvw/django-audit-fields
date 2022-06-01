@@ -7,4 +7,6 @@ AUDIT_MODEL_FIELDS = [
     "user_modified",
     "hostname_created",
     "hostname_modified",
+    "device_created",
+    "device_modified",
 ]
