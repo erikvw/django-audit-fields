@@ -1,6 +1,6 @@
 from django.db import models
 
-from ..models import AuditUuidModelMixin
+from django_audit_fields.models import AuditUuidModelMixin
 
 
 class TestModel(AuditUuidModelMixin):

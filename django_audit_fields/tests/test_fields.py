@@ -1,6 +1,6 @@
+import getpass
 import re
 import socket
-import getpass
 
 from django.test import TestCase
 
@@ -10,7 +10,7 @@ from .models import TestModel
 class TestFields(TestCase):
     def setUp(self):
         self.uuid_regex = re.compile(
-            "[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}"
+            r"[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}"
         )
 
     def test_uuid_none_on_instance(self):
@@ -63,8 +63,7 @@ class TestFields(TestCase):
         self.assertEqual(hostname, test_model.hostname_created)
 
     def test_user_created(self):
-        """Assert user is set on created ONLY unless explicitly set.
-        """
+        """Assert user is set on created ONLY unless explicitly set."""
         getpass.getuser()
         test_model = TestModel.objects.create(f1="monday")
         self.assertEqual("", test_model.user_created)
@@ -77,8 +76,7 @@ class TestFields(TestCase):
         self.assertEqual("jason", test_model.user_created)
 
     def test_user_modified(self):
-        """Assert user is always updated.
-        """
+        """Assert user is always updated."""
         user = getpass.getuser()
         test_model = TestModel(f1="monday")
         test_model.save()

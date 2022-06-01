@@ -1,10 +1,19 @@
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+write_to = "_version.py"
+
 [tool.black]
 line-length = 95
-target-version = ["py35"]
+target-version = ["py39"]
+extend-exclude = '''^(.*\/)*\b(migrations)\b($|\/.*$)'''
 
 [tool.isort]
 profile = "black"
-py_version = "35"
+py_version = "39"
+skip = [".tox", ".eggs", "migrations"]
 
 [tool.coverage.run]
 parallel = true
@@ -12,9 +21,49 @@ branch = true
 source = ["django_audit_fields"]
 
 [tool.coverage.paths]
-source = ["django_audit_fields", ".tox/*/site-packages"]
+source = ["django_audit_fields"]
 
 [tool.coverage.report]
 show_missing = true
 skip_covered = true
 omit = ["requirements.txt"]
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist =
+    py{39}-dj{32,dev},
+    lint
+isolated_build = true
+
+[gh-actions]
+python =
+    3.9: py39, lint
+
+[gh-actions:env]
+DJANGO =
+    3.2: dj32, lint
+    dev: djdev
+
+[testenv]
+deps =
+    -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/tox.txt
+    -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/test_utils.txt
+    -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/edc.txt
+    -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/third_party_dev.txt
+    dj32: Django>=3.2,<3.3
+    djdev: https://github.com/django/django/tarball/main
+
+commands =
+    pip install -U pip
+    pip --version
+    coverage run -a runtests.py
+    coverage report
+
+[testenv:lint]
+deps = -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/lint.txt
+commands =
+    isort --profile=black --check --diff .
+    black --check --diff .
+    flake8 .
+"""
