@@ -1,8 +1,8 @@
 import socket
 from datetime import datetime
 from typing import Tuple
+from zoneinfo import ZoneInfo
 
-import arrow
 from django.apps import apps as django_apps
 from django.conf import settings
 from django.db import models
@@ -13,7 +13,7 @@ from ..fields import HostnameModificationField, UserField
 
 
 def utcnow() -> datetime:
-    return arrow.utcnow().datetime
+    return datetime.now().astimezone(ZoneInfo("UTC"))
 
 
 def update_device_fields(instance: "AuditModelMixin") -> Tuple[str, str]:
