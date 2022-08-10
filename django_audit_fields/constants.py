@@ -1,6 +1,8 @@
-AUDIT_MODEL_UPDATE_FIELDS = ["modified", "user_modified", "hostname_modified"]
+from typing import List
 
-AUDIT_MODEL_FIELDS = [
+AUDIT_MODEL_UPDATE_FIELDS: List[str] = ["modified", "user_modified", "hostname_modified"]
+
+AUDIT_MODEL_FIELDS: List[str] = [
     "created",
     "modified",
     "user_created",
