@@ -1,0 +1,67 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-18 21:53-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: django_audit_fields/admin.py:11
+msgid "Audit"
+msgstr "Ukaguzi"
+
+#: django_audit_fields/fields/hostname_modification_field.py:8
+msgid "Custom field for hostname modified"
+msgstr ""
+
+#: django_audit_fields/fields/userfield.py:8
+msgid "Custom field for user created"
+msgstr ""
+
+#: django_audit_fields/fields/uuid_auto_field.py:10
+msgid "AutoField for universally unique identifier."
+msgstr ""
+
+#: django_audit_fields/models/audit_model_mixin.py:50
+msgid "user created"
+msgstr ""
+
+#: django_audit_fields/models/audit_model_mixin.py:53
+#: django_audit_fields/models/audit_model_mixin.py:60
+msgid "Updated by admin.save_model"
+msgstr ""
+
+#: django_audit_fields/models/audit_model_mixin.py:57
+msgid "user modified"
+msgstr ""
+
+#: django_audit_fields/models/audit_model_mixin.py:64
+msgid "Hostname created"
+msgstr ""
+
+#: django_audit_fields/models/audit_model_mixin.py:72
+msgid "Hostname modified"
+msgstr ""
+
+#: django_audit_fields/models/audit_model_mixin.py:79
+msgid "Device created"
+msgstr "Kifaa kimeundwa"
+
+#: django_audit_fields/models/audit_model_mixin.py:83
+msgid "Device modified"
+msgstr "Kifaa kimerekebishwa"
+
+#: django_audit_fields/models/audit_uuid_model_mixin.py:17
+msgid "System auto field. UUID primary key."
+msgstr ""

@@ -1,5 +1,6 @@
 from typing import Dict, Tuple
 
+from django.utils.translation import gettext_lazy as _
 from edc_utils import get_utcnow
 
 from .constants import AUDIT_MODEL_FIELDS
@@ -7,13 +8,12 @@ from .constants import AUDIT_MODEL_FIELDS
 audit_fields: Tuple[str, ...] = tuple(AUDIT_MODEL_FIELDS)
 
 audit_fieldset_tuple: Tuple[str, Dict[str, Tuple[str, ...]]] = (
-    "Audit",
+    _("Audit"),
     {"classes": ("collapse",), "fields": AUDIT_MODEL_FIELDS},
 )
 
 
 class ModelAdminAuditFieldsMixin:
-
     include_audit_fields_in_list_display: bool = True
 
     def save_model(self, request, obj, form, change) -> None:

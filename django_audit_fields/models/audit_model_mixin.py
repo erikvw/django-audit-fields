@@ -6,6 +6,7 @@ from zoneinfo import ZoneInfo
 from django.apps import apps as django_apps
 from django.conf import settings
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from django_revision.model_mixins import RevisionModelMixin
 
 from ..constants import AUDIT_MODEL_UPDATE_FIELDS
@@ -35,7 +36,7 @@ def update_device_fields(instance: "AuditModelMixin") -> Tuple[str, str]:
 
 class AuditModelMixin(RevisionModelMixin, models.Model):
 
-    """Base model class for all models. Adds created and modified'
+    """Base model class for all models. Adds created and modified
     values for user, date and hostname (computer).
     """
 
@@ -46,20 +47,21 @@ class AuditModelMixin(RevisionModelMixin, models.Model):
     modified = models.DateTimeField(blank=True, default=utcnow)
 
     user_created = UserField(
+        verbose_name=_("user created"),
         max_length=50,
         blank=True,
-        verbose_name="user created",
-        help_text="Updated by admin.save_model",
+        help_text=_("Updated by admin.save_model"),
     )
 
     user_modified = UserField(
+        verbose_name=_("user modified"),
         max_length=50,
         blank=True,
-        verbose_name="user modified",
-        help_text="Updated by admin.save_model",
+        help_text=_("Updated by admin.save_model"),
     )
 
     hostname_created = models.CharField(
+        verbose_name=_("Hostname created"),
         max_length=60,
         blank=True,
         default=socket.gethostname,
@@ -67,12 +69,19 @@ class AuditModelMixin(RevisionModelMixin, models.Model):
     )
 
     hostname_modified = HostnameModificationField(
-        max_length=50, blank=True, help_text="System field. (modified on every save)"
+        verbose_name=_("Hostname modified"),
+        max_length=50,
+        blank=True,
+        help_text="System field. (modified on every save)",
     )
 
-    device_created = models.CharField(max_length=10, blank=True)
+    device_created = models.CharField(
+        verbose_name=_("Device created"), max_length=10, blank=True
+    )
 
-    device_modified = models.CharField(max_length=10, blank=True)
+    device_modified = models.CharField(
+        verbose_name=_("Device modified"), max_length=10, blank=True
+    )
 
     objects = models.Manager()
 
