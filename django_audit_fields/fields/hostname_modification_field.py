@@ -1,11 +1,10 @@
 import socket
 
 from django.db.models import CharField
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 
 class HostnameModificationField(CharField):
-
     description = _("Custom field for hostname modified")
 
     def __init__(self, *args, **kwargs):

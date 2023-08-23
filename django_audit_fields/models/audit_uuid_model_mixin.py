@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from ..fields import UUIDAutoField
 from .audit_model_mixin import AuditModelMixin
@@ -13,7 +14,7 @@ class AuditUuidModelMixin(AuditModelMixin, models.Model):
     id = UUIDAutoField(
         blank=True,
         editable=False,
-        help_text="System auto field. UUID primary key.",
+        help_text=_("System auto field. UUID primary key."),
         primary_key=True,
     )
 
