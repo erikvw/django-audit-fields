@@ -1,13 +1,13 @@
-from typing import Dict, Tuple
+from __future__ import annotations
 
 from django.utils.translation import gettext_lazy as _
 from edc_utils import get_utcnow
 
 from .constants import AUDIT_MODEL_FIELDS
 
-audit_fields: Tuple[str, ...] = tuple(AUDIT_MODEL_FIELDS)
+audit_fields: tuple[str, ...] = tuple(AUDIT_MODEL_FIELDS)
 
-audit_fieldset_tuple: Tuple[str, Dict[str, Tuple[str, ...]]] = (
+audit_fieldset_tuple: tuple[str, dict[str, tuple[str, ...]]] = (
     _("Audit"),
     {"classes": ("collapse",), "fields": AUDIT_MODEL_FIELDS},
 )
@@ -26,7 +26,7 @@ class ModelAdminAuditFieldsMixin:
             obj.modified = get_utcnow()
         super().save_model(request, obj, form, change)
 
-    def get_list_display(self, request) -> Tuple[str, ...]:
+    def get_list_display(self, request) -> tuple[str, ...]:
         list_display = super().get_list_display(request)
         custom_fields = (
             (
@@ -40,12 +40,12 @@ class ModelAdminAuditFieldsMixin:
         )
         return tuple(f for f in list_display if f not in custom_fields) + custom_fields
 
-    def get_list_filter(self, request) -> Tuple[str, ...]:
+    def get_list_filter(self, request) -> tuple[str, ...]:
         """Add audit fields to list display."""
         list_filter = super().get_list_filter(request)
         return tuple(f for f in list_filter if f not in audit_fields) + audit_fields
 
-    def get_readonly_fields(self, request, obj=None) -> Tuple[str, ...]:
+    def get_readonly_fields(self, request, obj=None) -> tuple[str, ...]:
         """Add audit fields to readonly_fields."""
         readonly_fields = super().get_readonly_fields(request, obj=obj)
         return tuple(f for f in readonly_fields if f not in audit_fields) + audit_fields
