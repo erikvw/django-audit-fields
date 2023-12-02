@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from django.utils.translation import get_language_from_request
 from django.utils.translation import gettext_lazy as _
 from edc_utils import get_utcnow
 
@@ -21,9 +22,11 @@ class ModelAdminAuditFieldsMixin:
         if not change:
             obj.user_created = request.user.username
             obj.created = get_utcnow()
+            obj.locale_created = get_language_from_request(request, check_path=True)
         else:
             obj.user_modified = request.user.username
             obj.modified = get_utcnow()
+            obj.locale_modified = get_language_from_request(request, check_path=True)
         super().save_model(request, obj, form, change)
 
     def get_list_display(self, request) -> tuple[str, ...]:
@@ -34,6 +37,7 @@ class ModelAdminAuditFieldsMixin:
                 "modified",
                 "user_created",
                 "user_modified",
+                "locale_created",
             )
             if self.include_audit_fields_in_list_display
             else ()

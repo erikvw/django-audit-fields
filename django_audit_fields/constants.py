@@ -1,8 +1,14 @@
-from typing import List
+from __future__ import annotations
 
-AUDIT_MODEL_UPDATE_FIELDS: List[str] = ["modified", "user_modified", "hostname_modified"]
+AUDIT_MODEL_UPDATE_FIELDS: list[str] = [
+    "modified",
+    "user_modified",
+    "hostname_modified",
+    "device_modified",
+    "locale_modified",
+]
 
-AUDIT_MODEL_FIELDS: List[str] = [
+AUDIT_MODEL_FIELDS: list[str] = [
     "created",
     "modified",
     "user_created",
@@ -11,4 +17,6 @@ AUDIT_MODEL_FIELDS: List[str] = [
     "hostname_modified",
     "device_created",
     "device_modified",
+    "locale_created",
+    "locale_modified",
 ]
