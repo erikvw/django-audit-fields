@@ -83,6 +83,22 @@ class AuditModelMixin(RevisionModelMixin, models.Model):
         verbose_name=_("Device modified"), max_length=10, blank=True
     )
 
+    locale_created = models.CharField(
+        verbose_name=_("Locale created"),
+        max_length=10,
+        null=True,
+        blank=True,
+        help_text="Auto-updated by Modeladmin",
+    )
+
+    locale_modified = models.CharField(
+        verbose_name=_("Locale modified"),
+        max_length=10,
+        null=True,
+        blank=True,
+        help_text="Auto-updated by Modeladmin",
+    )
+
     objects = models.Manager()
 
     def save(self, *args, **kwargs):
@@ -109,6 +125,8 @@ class AuditModelMixin(RevisionModelMixin, models.Model):
         return self._meta.verbose_name
 
     class Meta:
-        get_latest_by = "modified"
-        ordering = ("-modified", "-created")
         abstract = True
+        indexes = [
+            models.Index(fields=["-modified", "-created"]),
+            models.Index(fields=["user_modified", "user_created"]),
+        ]
