@@ -124,9 +124,9 @@ class AuditModelMixin(RevisionModelMixin, models.Model):
     def verbose_name(self):
         return self._meta.verbose_name
 
-    class Meta:
+    class Meta(RevisionModelMixin.Meta):
         abstract = True
         indexes = [
-            models.Index(fields=["-modified", "-created"]),
+            models.Index(fields=["modified", "created"]),
             models.Index(fields=["user_modified", "user_created"]),
         ]

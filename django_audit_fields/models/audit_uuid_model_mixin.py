@@ -20,3 +20,4 @@ class AuditUuidModelMixin(AuditModelMixin, models.Model):
 
     class Meta(AuditModelMixin.Meta):
         abstract = True
+        indexes = AuditModelMixin.Meta.indexes
