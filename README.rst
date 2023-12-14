@@ -7,6 +7,7 @@ VERSION
 =======
 * <=0.3.3 (DJ 3.1, py 3.7, 3.8)
 * >=0.3.4 (DJ 3.2+, py 3.9+)
+* >=0.3.10 (DJ4.2, py3.11) includes locale
 
 
 Installation
@@ -52,7 +53,7 @@ Preferably, use a UUID as primary key by declaring your model using ``AuditUuidM
 
     class MyModel(AuditUuidModelMixin, models.Model):
         ...
-        class Meta(AuditUuidModelMixin.Meta)
+        class Meta(AuditUuidModelMixin.Meta):
             pass
 
 The model mixins ``AuditModelMixin`` and ``AuditUuidModelMixin``:
@@ -92,5 +93,5 @@ User created and modified fields behave as follows:
 .. |downloads| image:: https://pepy.tech/badge/django-audit-fields
    :target: https://pepy.tech/project/django-audit-fields
 
-.. |actions| image:: https://github.com/erikvw/django-audit-fields/workflows/build/badge.svg?branch=develop
-  :target: https://github.com/erikvw/django-audit-fields/actions?query=workflow:build
+.. |actions| image:: https://github.com/erikvw/django-audit-fields/actions/workflows/build.yml/badge.svg
+  :target: https://github.com/erikvw/django-audit-fields/actions/workflows/build.yml
