@@ -1,3 +1,22 @@
+
+0.3.15
+------
+- update testing matrix to include DJ50. Drop DJ41.
+
+0.3.14
+------
+- track the current language of a model instance on save
+- add locale created/modified fields to the default set of fields
+  provided on the mixin
+
+0.3.12
+------
+- add typing hints
+
+0.3.11
+------
+- update MANIFEST.in
+
 0.3.10
 ------
 - set up for translations

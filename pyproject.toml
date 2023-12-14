@@ -1,22 +1,21 @@
 [build-system]
-requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
-build-backend = "setuptools.build_meta"
+requires = ["setuptools>=60", "setuptools-scm>=8.0"]
 
 [tool.setuptools_scm]
-write_to = "_version.py"
+version_file="_version.py"
 
 [tool.black]
 line-length = 95
-target-version = ["py39"]
+target-version = ["py311"]
 extend-exclude = '''^(.*\/)*\b(migrations)\b($|\/.*$)'''
 
 [tool.isort]
 profile = "black"
-py_version = "310"
+py_version = "311"
 skip = [".tox", ".eggs", "migrations"]
 
 [tool.coverage.run]
-parallel = true
+parallel = false
 branch = true
 source = ["django_audit_fields"]
 
@@ -27,24 +26,31 @@ source = ["django_audit_fields"]
 show_missing = true
 skip_covered = true
 omit = ["requirements.txt"]
+exclude_lines = [
+  "pragma: no cover",
+  "if TYPE_CHECKING:",
+]
 
 [tool.tox]
 legacy_tox_ini = """
 [tox]
 envlist =
-    py{311}-dj{42,dev},
+    py{311}-dj{42,50},
+    py{312}-dj{50,dev},
     lint
 
 isolated_build = true
 
 [gh-actions]
 python =
-    3.11: py311, line
+    3.11: py311
+    3.12: py312, lint
 
 [gh-actions:env]
 DJANGO =
     4.2: dj42
-    dev: djdev
+    5.0: dj50
+    dev: djdev, lint
 
 [testenv]
 deps =
@@ -52,11 +58,12 @@ deps =
     -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/test_utils.txt
     -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/edc.txt
     -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/third_party_dev.txt
-    dj41: Django>=4.2,<5.0
+    dj42: Django>=4.2,<5.0
+    dj50: Django>=5.0
     djdev: https://github.com/django/django/tarball/main
 
 commands =
-    pip install -U pip
+    pip install -U pip coverage[toml]
     pip --version
     pip freeze
     coverage run -a runtests.py
