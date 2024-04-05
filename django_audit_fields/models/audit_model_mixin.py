@@ -35,7 +35,6 @@ def update_device_fields(instance: "AuditModelMixin") -> Tuple[str, str]:
 
 
 class AuditModelMixin(RevisionModelMixin, models.Model):
-
     """Base model class for all models. Adds created and modified
     values for user, date and hostname (computer).
     """

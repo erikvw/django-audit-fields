@@ -6,7 +6,6 @@ from .audit_model_mixin import AuditModelMixin
 
 
 class AuditUuidModelMixin(AuditModelMixin, models.Model):
-
     """Base model class for all models using an UUID and not
     an INT for the primary key.
     """
