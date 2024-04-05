@@ -1,14 +1,24 @@
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 from django.utils.translation import get_language_from_request
 from django.utils.translation import gettext_lazy as _
 from edc_utils import get_utcnow
 
 from .constants import AUDIT_MODEL_FIELDS
 
+if TYPE_CHECKING:
+    from typing import TypedDict
+
+    class FieldOptionsDict(TypedDict):
+        classes: tuple[str]
+        fields: list[str]
+
+
 audit_fields: tuple[str, ...] = tuple(AUDIT_MODEL_FIELDS)
 
-audit_fieldset_tuple: tuple[str, dict[str, tuple[str, ...]]] = (
+audit_fieldset_tuple: tuple[str, FieldOptionsDict] = (
     _("Audit"),
     {"classes": ("collapse",), "fields": AUDIT_MODEL_FIELDS},
 )
