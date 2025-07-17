@@ -6,8 +6,7 @@ build-backend = "setuptools.build_meta"
 version_file="_version.py"
 
 [tool.setuptools.packages.find]
-where= ["django_audit_fields"]
-# include = ["django_audit_fields*", "django_audit_fields/locale/*/LC_MESSAGES/*"]
+include = ["django_audit_fields*", "django_audit_fields/locale/*/LC_MESSAGES/*"]
 exclude = [
     "examples*",
     "tools*",
