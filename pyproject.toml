@@ -15,7 +15,7 @@ exclude = [
     "bin*",
     "image*",
 ]
-# namespaces = false  # true by default
+namespaces = false  # true by default
 
 [project]
 name = "django_audit_fields"
