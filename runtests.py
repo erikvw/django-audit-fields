@@ -3,14 +3,15 @@ import logging
 import os
 import sys
 from os.path import abspath, dirname
+from pathlib import Path
 
 import django
 from django.conf import settings
 from django.test.runner import DiscoverRunner
-from edc_test_utils import DefaultTestSettings
+from edc_test_settings.default_test_settings import DefaultTestSettings
 
 app_name = "django_audit_fields"
-base_dir = dirname(abspath(__file__))
+base_dir = Path(dirname(abspath(__file__)))
 
 DEFAULT_SETTINGS = DefaultTestSettings(
     calling_file=__file__,
