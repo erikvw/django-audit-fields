@@ -1,4 +1,12 @@
 
+1.0.0
+-----
+- fix: check for update_fields is not none and add audit fields
+  to ensure audit fields cannot be bypassed.
+- drop test support for dj5.1, py3.11
+- consolidate package info in pyproject.toml
+- add separate flake8 config file
+
 0.3.15
 ------
 - update testing matrix to include DJ50. Drop DJ41.
