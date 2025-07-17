@@ -101,12 +101,10 @@ class AuditModelMixin(RevisionModelMixin, models.Model):
     objects = models.Manager()
 
     def save(self, *args, **kwargs):
-        try:
+        if kwargs.get("update_fields"):
             # don't allow update_fields to bypass these audit fields
-            update_fields = kwargs.get("update_fields", None) + AUDIT_MODEL_UPDATE_FIELDS
-        except TypeError:
-            pass
-        else:
+            update_fields = kwargs.get("update_fields") + AUDIT_MODEL_UPDATE_FIELDS
+            update_fields = list(set(update_fields))
             kwargs.update({"update_fields": update_fields})
         dte_modified = utcnow()
         if not self.id:
@@ -114,9 +112,7 @@ class AuditModelMixin(RevisionModelMixin, models.Model):
             self.hostname_created = self.hostname_created[:60]
         self.modified = dte_modified
         self.hostname_modified = self.hostname_modified[:50]
-
         self.device_created, self.device_modified = update_device_fields(self)
-
         super().save(*args, **kwargs)
 
     @property

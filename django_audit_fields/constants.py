@@ -5,7 +5,6 @@ AUDIT_MODEL_UPDATE_FIELDS: list[str] = [
     "user_modified",
     "hostname_modified",
     "device_modified",
-    "locale_modified",
 ]
 
 AUDIT_MODEL_FIELDS: list[str] = [

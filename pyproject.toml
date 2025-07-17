@@ -1,18 +1,58 @@
 [build-system]
-requires = ["setuptools>=60", "setuptools-scm>=8.0"]
+requires = ["setuptools>=64", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
 
 [tool.setuptools_scm]
 version_file="_version.py"
 
+[tool.setuptools.packages.find]
+where= ["django_audit_fields"]
+# include = ["django_audit_fields*", "django_audit_fields/locale/*/LC_MESSAGES/*"]
+exclude = [
+    "examples*",
+    "tools*",
+    "docs*",
+    "bin*",
+    "image*",
+]
+# namespaces = false  # true by default
+
+[project]
+name = "django_audit_fields"
+dynamic = ["version"]
+description = "Add model fields to track creation and modification dates, users and more on save"
+readme = {file = "README.rst", content-type = "text/x-rst"}
+keywords = ["django", "clinicedc", "edc", "clinical trials", "research", "data management", "esource"]
+authors = [
+    { name = "Erik van Widenfelt", email = "ew2789@gmail.com" },
+]
+maintainers = [
+    { name = "Erik van Widenfelt", email = "ew2789@gmail.com" },
+]
+classifiers = [
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Framework :: Django :: 5.2",
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+license = "GPL-3.0-or-later"
+license-files = ["LICEN[CS]E*"]
+requires-python = '>=3.12'
+
 [tool.black]
 line-length = 95
-target-version = ["py311"]
+target-version = ["py312"]
 extend-exclude = '''^(.*\/)*\b(migrations)\b($|\/.*$)'''
 
 [tool.isort]
 profile = "black"
-py_version = "311"
-skip = [".tox", ".eggs", "migrations"]
+py_version = "312"
+skip = [".tox", ".eggs", "migrations", "_version.py"]
 
 [tool.coverage.run]
 parallel = false
@@ -35,21 +75,21 @@ exclude_lines = [
 legacy_tox_ini = """
 [tox]
 envlist =
-    py{311}-dj{42,50},
-    py{312}-dj{50,dev},
+    py{312}-dj{51,52},
+    py{313}-dj{52,dev},
     lint
 
 isolated_build = true
 
 [gh-actions]
 python =
-    3.11: py311
-    3.12: py312, lint
+    3.12: py311
+    3.13: py313, lint
 
 [gh-actions:env]
 DJANGO =
-    4.2: dj42
-    5.0: dj50
+    5.1: dj51
+    5.2: dj52
     dev: djdev, lint
 
 [testenv]
@@ -58,8 +98,8 @@ deps =
     -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/test_utils.txt
     -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/edc.txt
     -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/third_party_dev.txt
-    dj42: Django>=4.2,<5.0
-    dj50: Django>=5.0
+    dj51: Django>=5.1,<5.2
+    dj52: Django>=5.2,<5.3
     djdev: https://github.com/django/django/tarball/main
 
 commands =
