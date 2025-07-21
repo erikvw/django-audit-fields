@@ -3,8 +3,10 @@
 django-audit-fields
 -------------------
 
-VERSION
-=======
+DJ5.2+, py3.12+
+
+Older VERSIONs
+==============
 * <=0.3.3 (DJ 3.1, py 3.7, 3.8)
 * >=0.3.4 (DJ 3.2+, py 3.9+)
 * >=0.3.14 (DJ4.2, py3.11) includes locale
