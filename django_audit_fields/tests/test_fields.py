@@ -86,3 +86,17 @@ class TestFields(TestCase):
         test_model.user_modified = ""
         test_model.save()
         self.assertEqual(user, test_model.user_modified)
+
+    def test_update_fields(self):
+        """Assert using update_fields cannot bypass audit fields."""
+        test_model = TestModel(f1="monday")
+        test_model.save()
+        test_model.refresh_from_db()
+        created = test_model.created
+        modified = test_model.modified
+
+        test_model.f1 = "tuesday"
+        test_model.save(update_fields=["f1"])
+        test_model.refresh_from_db()
+        self.assertEqual(created, test_model.created)
+        self.assertNotEqual(modified, test_model.modified)
