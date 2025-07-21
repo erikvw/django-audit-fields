@@ -103,7 +103,8 @@ class AuditModelMixin(RevisionModelMixin, models.Model):
     def save(self, *args, **kwargs):
         if kwargs.get("update_fields"):
             # don't allow update_fields to bypass these audit fields
-            update_fields = kwargs.get("update_fields") + AUDIT_MODEL_UPDATE_FIELDS
+            update_fields = list(kwargs.get("update_fields"))
+            update_fields.extend(AUDIT_MODEL_UPDATE_FIELDS)
             update_fields = list(set(update_fields))
             kwargs.update({"update_fields": update_fields})
         dte_modified = utcnow()
