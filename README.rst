@@ -1,19 +1,19 @@
-|pypi| |actions| |codecov| |downloads|
+|pypi| |actions| |codecov| |downloads| |clinicedc|
 
 django-audit-fields
--------------------
+===================
 
 DJ5.2+, py3.12+
 
-Older VERSIONs
-==============
+Older VERSIONS
+--------------
 * <=0.3.3 (DJ 3.1, py 3.7, 3.8)
 * >=0.3.4 (DJ 3.2+, py 3.9+)
 * >=0.3.14 (DJ4.2, py3.11) includes locale
 
 
 Installation
-============
+------------
 
 .. code-block:: bash
 
@@ -31,7 +31,7 @@ Add both ``django_audit_fields`` and ``django_revision`` to INSTALLED_APPS
         "..."]
 
 Usage
-=====
+-----
 
 Add model fields to track creation and modification dates, users and more on save.
 
@@ -67,18 +67,18 @@ The model mixin ``AuditUuidModelMixin`` also
 * sets the id fields to a ``UUIDField`` instead of an integer;
 
 
-Most models require an audit trail. If so, add the ``HistoricalRecord`` model manager from ``django-simple-history``:
+Most models require an audit trail. If so, add the ``HistoricalRecord`` model manager from ``django-simple-history``
 
 .. code-block:: python
 
     from simple_history.models import HistoricalRecords
 
     class MyModel(AuditUuidModelMixin, models.Model):
-        ...
+        # ...
         history = HistoricalRecords()
 
 Notes
-=====
+-----
 
 User created and modified fields behave as follows:
 
@@ -87,13 +87,17 @@ User created and modified fields behave as follows:
 
 
 .. |pypi| image:: https://img.shields.io/pypi/v/django-audit-fields.svg
-    :target: https://pypi.python.org/pypi/django-audit-fields
+   :target: https://pypi.python.org/pypi/django-audit-fields
 
 .. |codecov| image:: https://codecov.io/gh/erikvw/django-audit-fields/branch/develop/graph/badge.svg
-  :target: https://codecov.io/gh/erikvw/django-audit-fields
+   :target: https://codecov.io/gh/erikvw/django-audit-fields
 
 .. |downloads| image:: https://pepy.tech/badge/django-audit-fields
    :target: https://pepy.tech/project/django-audit-fields
 
 .. |actions| image:: https://github.com/erikvw/django-audit-fields/actions/workflows/build.yml/badge.svg
-  :target: https://github.com/erikvw/django-audit-fields/actions/workflows/build.yml
+   :target: https://github.com/erikvw/django-audit-fields/actions/workflows/build.yml
+
+.. |clinicedc| image:: https://img.shields.io/badge/framework-Clinic_EDC-green
+   :alt:Made with clinicedc
+   :target: https://github.com/clinicedc
