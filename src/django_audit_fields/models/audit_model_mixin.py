@@ -1,20 +1,24 @@
 import socket
-from datetime import datetime
 from typing import Tuple
-from zoneinfo import ZoneInfo
 
 from django.apps import apps as django_apps
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django_revision.model_mixins import RevisionModelMixin
 
 from ..constants import AUDIT_MODEL_UPDATE_FIELDS
 from ..fields import HostnameModificationField, UserField
+from ..utils import utcnow
+
+if getattr(settings, "DJANGO_AUDIT_FIELDS_INCLUDE_REVISION", False):
+    from django_revision.model_mixins import RevisionModelMixin
+else:
+
+    class RevisionModelMixin:
+        pass
 
 
-def utcnow() -> datetime:
-    return datetime.now().astimezone(ZoneInfo("UTC"))
+__all__ = ["AuditModelMixin"]
 
 
 def update_device_fields(instance: "AuditModelMixin") -> Tuple[str, str]:
@@ -120,7 +124,7 @@ class AuditModelMixin(RevisionModelMixin, models.Model):
     def verbose_name(self):
         return self._meta.verbose_name
 
-    class Meta(RevisionModelMixin.Meta):
+    class Meta:
         abstract = True
         indexes = [
             models.Index(fields=["modified", "created"]),

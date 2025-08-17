@@ -33,9 +33,11 @@ classifiers = [
 license = "GPL-3.0-or-later"
 license-files = ["LICEN[CS]E*"]
 requires-python = ">=3.12"
-dependencies = [
-    "django-revision>=1.0.0",
-    "edc-utils>=1.1.1",
+dependencies = []
+
+[project.optional-dependencies]
+django-reversion = [
+    "django-revision>=2.0.0"
 ]
 
 [project.urls]
@@ -72,9 +74,14 @@ exclude_lines = [
 ]
 
 [tool.rstcheck]
-ignore_directives = ["toctree"]
+ignore_directives = ["toctree", "code-block"]
 
 [dependency-groups]
+
+dev = [
+    "django>=5.2.5",
+]
+
 docs = [
     "furo>=2025.7.19",
     "sphinx>=8.2.3",

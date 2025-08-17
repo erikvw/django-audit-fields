@@ -12,6 +12,7 @@ project_settings = DefaultTestSettings(
     BASE_DIR=base_dir,
     APP_NAME=app_name,
     ETC_DIR=base_dir / "tests" / "etc",
+    DJANGO_AUDIT_FIELDS_INCLUDE_REVISION=False,
     INSTALLED_APPS=[
         "django.contrib.admin",
         "django.contrib.auth",
@@ -20,9 +21,9 @@ project_settings = DefaultTestSettings(
         "django.contrib.sessions",
         "django.contrib.sites",
         "django.contrib.staticfiles",
-        "django_revision.apps.AppConfig",
         f"{app_name}.apps.AppConfig",
     ],
+    use_test_urls=True,
 ).settings
 
 

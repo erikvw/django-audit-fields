@@ -259,12 +259,16 @@ wheels = [
 name = "django-audit-fields"
 version = "1.1.0"
 source = { editable = "." }
-dependencies = [
+
+[package.optional-dependencies]
+django-reversion = [
     { name = "django-revision" },
-    { name = "edc-utils" },
 ]
 
 [package.dev-dependencies]
+dev = [
+    { name = "django" },
+]
 docs = [
     { name = "furo" },
     { name = "sphinx" },
@@ -286,12 +290,11 @@ test = [
 ]
 
 [package.metadata]
-requires-dist = [
-    { name = "django-revision", specifier = ">=1.0.0" },
-    { name = "edc-utils", specifier = ">=1.1.1" },
-]
+requires-dist = [{ name = "django-revision", marker = "extra == 'django-reversion'", specifier = ">=2.0.0" }]
+provides-extras = ["django-reversion"]
 
 [package.metadata.requires-dev]
+dev = [{ name = "django", specifier = ">=5.2.5" }]
 docs = [
     { name = "furo", specifier = ">=2025.7.19" },
     { name = "sphinx", specifier = ">=8.2.3" },
@@ -314,14 +317,15 @@ test = [
 
 [[package]]
 name = "django-revision"
-version = "1.0.0"
+version = "2.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "gitpython" },
+    { name = "python-dateutil" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/cb/f9/99ea27172c458ac6f997c5d39482b2ec7b07cdde02239d10df996fec5257/django_revision-1.0.0.tar.gz", hash = "sha256:d57f316cdd10404881fa68fa3be5025d6dd0954f202dce60f4372e548a19bd46", size = 18847, upload-time = "2025-07-21T12:56:22.17Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/6f/d1/9764a77133dbf6e0121abdb06aec57495929f900ea6f0fca6025899df75b/django_revision-2.0.0.tar.gz", hash = "sha256:285d8a491955f2c63629de5738bd9db3199b7caa01fd2b8aedae7816a3a0eda8", size = 15108, upload-time = "2025-08-17T22:32:33.661Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/fc/0e/75567b9ae1039af36d20f1c8706c44912182a0fa7845ee234fa22fbb57e1/django_revision-1.0.0-py3-none-any.whl", hash = "sha256:b0786777b424209ee4334116785dc2eda0706cb12e361f83cf656a34757655dc", size = 16974, upload-time = "2025-07-21T12:56:21.296Z" },
+    { url = "https://files.pythonhosted.org/packages/7c/82/c30c2c2be3c9c311e70d146afb387e097e1d114bfe192211ce840970f376/django_revision-2.0.0-py3-none-any.whl", hash = "sha256:085a04d18bfa0682b1cf3fd307698617473443f6fd88704df3982b9c58adf00c", size = 20075, upload-time = "2025-08-17T22:32:32.331Z" },
 ]
 
 [[package]]
@@ -340,18 +344,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/b9/b2/3fb900f0deb5b4e206b879e4d61507e9ee9980ac2544c1ac6332fb8d7ac0/edc_test_settings-1.1.2.tar.gz", hash = "sha256:472feaee3cb6db212a257aea6dfa4cf0243ca0b6e0531c3e464c8e4aba5544f9", size = 21476, upload-time = "2025-07-21T16:11:07.269Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/78/f8/68ba3dafea23a7f2d3a06adb01142ef8237bf306f2ee2db89d9d574a3453/edc_test_settings-1.1.2-py3-none-any.whl", hash = "sha256:60c7aa38af6ad2dae28029f5ef5f9399f094be830a1c647c2e146f779fa236dc", size = 19491, upload-time = "2025-07-21T16:11:06.141Z" },
-]
-
-[[package]]
-name = "edc-utils"
-version = "1.1.1"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "python-dateutil" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/97/e3/3acedaf7b99b5afe2c6f71889e4397febc5317f8d048e2ab2fbb971592bd/edc_utils-1.1.1.tar.gz", hash = "sha256:b68acaef4276c529d127edfabc401fe5788cf4017e539e3164a80f26fff9df96", size = 34611, upload-time = "2025-07-15T14:58:48.794Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/ef/06/c0afced8d415b56824233a37bd135b596261588e1f9b6d019dc9b118d852/edc_utils-1.1.1-py3-none-any.whl", hash = "sha256:5f5a028f3dc995414a84e137be9978db0b20b9cdb1352563db8bc3b2e206ba0c", size = 35830, upload-time = "2025-07-15T14:58:47.473Z" },
 ]
 
 [[package]]
