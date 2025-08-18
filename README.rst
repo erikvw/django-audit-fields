@@ -9,7 +9,7 @@ django-audit-fields
 DJ5.2+, py3.12+
 
 Important:
-    * As of version 1.1.0, `edc-utils`_ is no longer a dependency of ``django-audit-fields``.
+    * As of version 2.0.0, `edc-utils`_ is no longer a dependency of ``django-audit-fields``.
 
 
 This module includes `django-revision`_ and is best used together with `django-simple-history`_.
