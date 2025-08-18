@@ -259,9 +259,7 @@ wheels = [
 name = "django-audit-fields"
 version = "1.1.0"
 source = { editable = "." }
-
-[package.optional-dependencies]
-django-reversion = [
+dependencies = [
     { name = "django-revision" },
 ]
 
@@ -290,8 +288,7 @@ test = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "django-revision", marker = "extra == 'django-reversion'", specifier = ">=2.0.0" }]
-provides-extras = ["django-reversion"]
+requires-dist = [{ name = "django-revision", specifier = ">=2.0.0" }]
 
 [package.metadata.requires-dev]
 dev = [{ name = "django", specifier = ">=5.2.5" }]

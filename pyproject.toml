@@ -33,12 +33,8 @@ classifiers = [
 license = "GPL-3.0-or-later"
 license-files = ["LICEN[CS]E*"]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = ["django-revision>=2.0.0"]
 
-[project.optional-dependencies]
-django-reversion = [
-    "django-revision>=2.0.0"
-]
 
 [project.urls]
 Homepage = "https://github.com/erikvw/django-audit-fields"

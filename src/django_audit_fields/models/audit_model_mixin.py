@@ -5,18 +5,11 @@ from django.apps import apps as django_apps
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django_revision.model_mixins import RevisionModelMixin
 
 from ..constants import AUDIT_MODEL_UPDATE_FIELDS
 from ..fields import HostnameModificationField, UserField
 from ..utils import utcnow
-
-if getattr(settings, "DJANGO_AUDIT_FIELDS_INCLUDE_REVISION", False):
-    from django_revision.model_mixins import RevisionModelMixin
-else:
-
-    class RevisionModelMixin:
-        pass
-
 
 __all__ = ["AuditModelMixin"]
 
