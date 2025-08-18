@@ -1,45 +1,8 @@
 #!/usr/bin/env python
-import logging
-import os
-import sys
-from os.path import abspath, dirname
-from pathlib import Path
-
-import django
-from django.conf import settings
-from django.test.runner import DiscoverRunner
-from edc_test_settings.default_test_settings import DefaultTestSettings
-
-app_name = "django_audit_fields"
-base_dir = Path(dirname(abspath(__file__)))
-
-DEFAULT_SETTINGS = DefaultTestSettings(
-    calling_file=__file__,
-    BASE_DIR=base_dir,
-    APP_NAME=app_name,
-    ETC_DIR=os.path.join(base_dir, app_name, "tests", "etc"),
-    INSTALLED_APPS=[
-        "django.contrib.admin",
-        "django.contrib.auth",
-        "django.contrib.contenttypes",
-        "django.contrib.messages",
-        "django.contrib.sessions",
-        "django.contrib.sites",
-        "django.contrib.staticfiles",
-        "django_revision.apps.AppConfig",
-        f"{app_name}.apps.AppConfig",
-    ],
-).settings
-
-
-def main():
-    if not settings.configured:
-        settings.configure(**DEFAULT_SETTINGS)
-    django.setup()
-    failures = DiscoverRunner(failfast=True).run_tests([f"{app_name}.tests"])
-    sys.exit(failures)
-
+from edc_test_settings.func_main import func_main2
 
 if __name__ == "__main__":
-    logging.basicConfig()
-    main()
+    func_main2(
+        "tests.test_settings",
+        "django_audit_fields.tests",
+    )

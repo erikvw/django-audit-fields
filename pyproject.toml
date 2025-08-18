@@ -1,24 +1,15 @@
 [build-system]
-requires = ["setuptools>=64", "setuptools-scm>=8"]
-build-backend = "setuptools.build_meta"
+requires = ["uv_build>=0.8.2,<0.9.0"]
+build-backend = "uv_build"
 
-[tool.setuptools_scm]
-version_file="_version.py"
-
-[tool.setuptools.packages.find]
-include = ["django_audit_fields*", "django_audit_fields/locale/*/LC_MESSAGES/*"]
-exclude = [
-    "examples*",
-    "tools*",
-    "docs*",
-    "bin*",
-    "image*",
-]
-namespaces = false  # true by default
+[tool.uv.build-backend]
+module-root = "src"
+source-exclude = ["bin"]
+namespace = false
 
 [project]
 name = "django_audit_fields"
-dynamic = ["version"]
+version = "2.0.0"
 description = "Add model fields to track creation and modification dates, users and more on save"
 readme = {file = "README.rst", content-type = "text/x-rst"}
 keywords = ["django", "clinicedc", "edc", "clinical trials", "research", "data management", "esource"]
@@ -41,25 +32,33 @@ classifiers = [
 ]
 license = "GPL-3.0-or-later"
 license-files = ["LICEN[CS]E*"]
-requires-python = '>=3.12'
+requires-python = ">=3.12"
+dependencies = ["django-revision>=2.0.0"]
+
+
+[project.urls]
+Homepage = "https://github.com/erikvw/django-audit-fields"
+Documentation = "https://github.com/erikvw/django-audit-fields/docs"
+Repository = "https://github.com/erikvw/django-audit-fields.git"
+Changelog = "https://github.com/erikvw/django-audit-fields/blob/main/CHANGES"
 
 [tool.black]
 line-length = 88
 target-version = ["py312"]
-extend-exclude = '''^(.*\/)*\b(migrations)\b($|\/.*$)'''
+extend-exclude = '''^(.*\/)*\b(migrations|\.venv)\b($|\/.*$)'''
 
 [tool.isort]
 profile = "black"
 py_version = "312"
-skip = [".tox", ".eggs", "migrations", "_version.py"]
+skip = [".tox", ".eggs", "migrations", "_version.py", ".venv"]
 
 [tool.coverage.run]
 parallel = false
 branch = true
-source = ["django_audit_fields"]
+source = ["src"]
 
 [tool.coverage.paths]
-source = ["django_audit_fields"]
+source = ["drc"]
 
 [tool.coverage.report]
 show_missing = true
@@ -70,48 +69,32 @@ exclude_lines = [
   "if TYPE_CHECKING:",
 ]
 
-[tool.tox]
-legacy_tox_ini = """
-[tox]
-envlist =
-    py{312}-dj{51,52},
-    py{313}-dj{52,dev},
-    lint
+[tool.rstcheck]
+ignore_directives = ["toctree", "code-block"]
 
-isolated_build = true
+[dependency-groups]
 
-[gh-actions]
-python =
-    3.12: py311
-    3.13: py313, lint
+dev = [
+    "django>=5.2.5",
+]
 
-[gh-actions:env]
-DJANGO =
-    5.1: dj51
-    5.2: dj52
-    dev: djdev, lint
+docs = [
+    "furo>=2025.7.19",
+    "sphinx>=8.2.3",
+    "sphinx-design>=0.6.1",
+    "sphinx-inline-tabs>=2023.4.21",
+]
+lint = [
+    "black>=25.1.0",
+    "flake8>=7.3.0",
+    "isort==5.13.2",
+    "ruff>=0.12.5",
+]
 
-[testenv]
-deps =
-    -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/tox.txt
-    -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/test_utils.txt
-    -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/edc.txt
-    -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/third_party_dev.txt
-    dj51: Django>=5.1,<5.2
-    dj52: Django>=5.2,<5.3
-    djdev: https://github.com/django/django/tarball/main
-
-commands =
-    pip install -U pip coverage[toml]
-    pip --version
-    pip freeze
-    coverage run -a runtests.py
-    coverage report
-
-[testenv:lint]
-deps = -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/lint.txt
-commands =
-    isort --profile=black --check --diff .
-    black --check --diff .
-    flake8 .
-"""
+test = [
+    "coverage>=7.10.3",
+    "django>=5.2",
+    "edc-test-settings>=1.1.2",
+    "python-dateutil>=2.9.0.post0",
+    "tox-uv>=1.28.0",
+]

@@ -1,4 +1,11 @@
 
+2.0.0
+-----
+- build using uv
+- fix dependencies
+- add docs
+- bump django-revision dependency
+
 1.0.0
 -----
 - fix: check for update_fields is not none and add audit fields
