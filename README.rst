@@ -75,6 +75,8 @@ Preferably, use a UUID as primary key by declaring your model using ``AuditUuidM
 Model mixins ``AuditModelMixin`` and ``AuditUuidModelMixin``
 ------------------------------------------------------------
 
+The model mixin ``AuditUuidModelMixin`` sets the ``id`` fields to a ``UUIDField`` instead of an integer field.
+
 Model mixins ``AuditModelMixin`` and ``AuditUuidModelMixin`` add audit fields:
 
 +-------------------+-----------------+----------------------------+
@@ -102,7 +104,6 @@ Model mixins ``AuditModelMixin`` and ``AuditUuidModelMixin`` add audit fields:
 
 * RevisionField is from django-revision. See `django-revision.readthedocs.io <https://django-revision.readthedocs.io/>`_.
 
-The model mixin ``AuditUuidModelMixin`` also sets the ``id`` fields to a ``UUIDField`` instead of an integer;
 
 .. |pypi| image:: https://img.shields.io/pypi/v/django-audit-fields.svg
    :target: https://pypi.python.org/pypi/django-audit-fields
