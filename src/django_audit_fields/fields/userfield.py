@@ -16,7 +16,7 @@ class UserField(CharField):
 
     def pre_save(self, model_instance, add):
         """Updates username created on ADD only."""
-        value = super(UserField, self).pre_save(model_instance, add)
+        value = super().pre_save(model_instance, add)
         if not value and not add:
             # fall back to OS user if not accessing through browser
             # better than nothing ...

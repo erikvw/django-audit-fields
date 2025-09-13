@@ -2,11 +2,11 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from django.utils import timezone
 from django.utils.translation import get_language_from_request
 from django.utils.translation import gettext_lazy as _
 
 from .constants import AUDIT_MODEL_FIELDS
-from .utils import utcnow
 
 if TYPE_CHECKING:
     from typing import TypedDict
@@ -31,11 +31,11 @@ class ModelAdminAuditFieldsMixin:
         """Update audit fields from request object before save."""
         if not change:
             obj.user_created = request.user.username
-            obj.created = utcnow()
+            obj.created = timezone.now()
             obj.locale_created = get_language_from_request(request, check_path=True)
         else:
             obj.user_modified = request.user.username
-            obj.modified = utcnow()
+            obj.modified = timezone.now()
             obj.locale_modified = get_language_from_request(request, check_path=True)
         super().save_model(request, obj, form, change)
 
