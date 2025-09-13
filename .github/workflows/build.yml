@@ -69,7 +69,7 @@ jobs:
           uv tool install tox --with tox-uv
 
       - name: Verify tox plugins
-        run: uv run --active --group test --no-sources tox --version
+        run: uv run --group test --no-sources tox --version
 
       - name: Tox tests
         run: |

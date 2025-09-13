@@ -11,7 +11,7 @@ class HostnameModificationField(CharField):
         kwargs.setdefault("blank", True)
         CharField.__init__(self, *args, **kwargs)
 
-    def pre_save(self, model_instance, add):
+    def pre_save(self, model_instance, add):  # noqa: ARG002
         """Updates socket.gethostname() on each save."""
         value = socket.gethostname()
         setattr(model_instance, self.attname, value)

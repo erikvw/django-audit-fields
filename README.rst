@@ -4,15 +4,15 @@
 django-audit-fields
 ===================
 
-`django-audit-fields.readthedocs.io <https://django-audit-fields.readthedocs.io/>`_
+This module has two model mixins that when used with a Django model adds a group of audit fields updated when a model instance is created and modified. This is one part of a strategy to be compliant with guidelines such as `Good Clinical Practice (GCP) <https://www.ema.europa.eu/en/human-regulatory-overview/research-development/compliance-research-development/good-clinical-practice>`_, `21 CFR part 11 <https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-11>`_, `EU GDPR <https://gdpr.eu/>`_, `UK GDPR <https://ico.org.uk/for-organisations/data-protection-and-the-eu/data-protection-and-the-eu-in-detail/the-uk-gdpr/>`_, and the `South African POPI Act <https://popia.co.za>`_. See the full list below of fields below.
 
-DJ5.2+, py3.12+
+This module includes `django-revision`_, which tracks the source code revision, and is best used together with `django-simple-history`_.
 
-Important:
-    * As of version 2.0.0, `edc-utils`_ is no longer a dependency of ``django-audit-fields``.
+As of version 1.1.0, `edc-utils`_ is no longer a dependency of ``django-audit-fields``.
 
+Documentation: `django-audit-fields.readthedocs.io <https://django-audit-fields.readthedocs.io/>`_
 
-This module includes `django-revision`_ and is best used together with `django-simple-history`_.
+Requirements: DJ5.2+, py3.12+
 
 Older versions
 --------------
