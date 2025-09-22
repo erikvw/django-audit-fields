@@ -9,6 +9,7 @@ class UserField(CharField):
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault("blank", True)
+        kwargs.setdefault("default", "")
         CharField.__init__(self, *args, **kwargs)
 
     def get_os_username(self):
