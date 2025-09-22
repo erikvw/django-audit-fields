@@ -41,6 +41,7 @@ class AuditModelMixin(RevisionModelMixin, models.Model):
         verbose_name=_("user created"),
         max_length=50,
         blank=True,
+        default="",
         help_text=_("Updated by admin.save_model"),
     )
 
@@ -48,6 +49,7 @@ class AuditModelMixin(RevisionModelMixin, models.Model):
         verbose_name=_("user modified"),
         max_length=50,
         blank=True,
+        default="",
         help_text=_("Updated by admin.save_model"),
     )
 
@@ -63,21 +65,29 @@ class AuditModelMixin(RevisionModelMixin, models.Model):
         verbose_name=_("Hostname modified"),
         max_length=50,
         blank=True,
+        default="",
         help_text="System field. (modified on every save)",
     )
 
     device_created = models.CharField(
-        verbose_name=_("Device created"), max_length=10, blank=True
+        verbose_name=_("Device created"),
+        max_length=10,
+        blank=True,
+        default="",
     )
 
     device_modified = models.CharField(
-        verbose_name=_("Device modified"), max_length=10, blank=True
+        verbose_name=_("Device modified"),
+        max_length=10,
+        blank=True,
+        default="",
     )
 
     locale_created = models.CharField(
         verbose_name=_("Locale created"),
         max_length=10,
         blank=True,
+        default="",
         help_text="Auto-updated by Modeladmin",
     )
 
@@ -85,6 +95,7 @@ class AuditModelMixin(RevisionModelMixin, models.Model):
         verbose_name=_("Locale modified"),
         max_length=10,
         blank=True,
+        default="",
         help_text="Auto-updated by Modeladmin",
     )
 

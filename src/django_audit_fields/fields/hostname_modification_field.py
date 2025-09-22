@@ -9,6 +9,7 @@ class HostnameModificationField(CharField):
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault("blank", True)
+        kwargs.setdefault("default", "")
         CharField.__init__(self, *args, **kwargs)
 
     def pre_save(self, model_instance, add):  # noqa: ARG002
