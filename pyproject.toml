@@ -9,7 +9,7 @@ namespace = false
 
 [project]
 name = "django_audit_fields"
-version = "2.0.2"
+version = "2.0.3"
 description = "Add model fields to track creation and modification dates, users and more on save"
 readme = {file = "README.rst", content-type = "text/x-rst"}
 keywords = ["django", "clinicedc", "edc", "clinical trials", "research", "data management", "esource"]
@@ -99,12 +99,12 @@ branch = true
 source = ["src"]
 
 [tool.coverage.paths]
-source = ["drc"]
+source = ["src"]
 
 [tool.coverage.report]
 show_missing = true
 skip_covered = true
-omit = ["requirements.txt"]
+omit = ["requirements.txt", "*/migrations/*"]
 exclude_lines = [
   "pragma: no cover",
   "if TYPE_CHECKING:",
