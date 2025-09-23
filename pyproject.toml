@@ -99,12 +99,12 @@ branch = true
 source = ["src"]
 
 [tool.coverage.paths]
-source = ["drc"]
+source = ["src"]
 
 [tool.coverage.report]
 show_missing = true
 skip_covered = true
-omit = ["requirements.txt"]
+omit = ["requirements.txt", "*/migrations/*"]
 exclude_lines = [
   "pragma: no cover",
   "if TYPE_CHECKING:",

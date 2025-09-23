@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 audit_fields: tuple[str, ...] = tuple(AUDIT_MODEL_FIELDS)
 
-audit_fieldset_tuple: tuple[str, FieldOptionsDict] = (
+audit_fieldset_tuple: tuple[str, dict] = (
     _("Audit"),
     {"classes": ("collapse",), "fields": AUDIT_MODEL_FIELDS},
 )
