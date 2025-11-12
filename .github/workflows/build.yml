@@ -52,28 +52,16 @@ jobs:
           python-version: ${{ matrix.python-version }}
           enable-cache: true
 
-#      - name: Get uv cache dir
-#        id: uv-cache
-#        run: echo "dir=$(uv run pip cache dir)" >> $GITHUB_OUTPUT
-#
-#      - name: Cache uv dependencies
-#        uses: actions/cache@v4
-#        with:
-#          path: ${{ steps.uv-cache.outputs.dir }}
-#          key: uv-${{ matrix.python-version }}-${{ hashFiles('**/pyproject.toml') }}-${{ hashFiles('**/tox.ini') }}
-#          restore-keys: |
-#            uv-${{ matrix.python-version }}-
-
       - name: Install tox
         run: |
           uv tool install tox --with tox-uv
 
       - name: Verify tox plugins
-        run: uv run --group test --no-sources tox --version
+        run: uv run --active --no-sources tox --version
 
       - name: Tox tests
         run: |
-          uv run --active --group test --no-sources tox
+          uv run --active --no-sources tox
         env:
           DJANGO: ${{ matrix.django-version }}
 
