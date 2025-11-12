@@ -47,7 +47,7 @@ Declare your model using ``AuditModelMixin``
 
 .. code-block:: python
 
-    from django_audit_fields.model_mixins import AuditModelMixin
+    from django_audit_fields.models import AuditModelMixin
     from simple_history.models import HistoricalRecords
 
     class MyModel(AuditModelMixin,  models.Model):
@@ -61,7 +61,7 @@ Preferably, use a UUID as primary key by declaring your model using ``AuditUuidM
 
 .. code-block:: python
 
-    from django_audit_fields.model_mixins import AuditUuidModelMixin
+    from django_audit_fields.models import AuditUuidModelMixin
     from simple_history.models import HistoricalRecords
 
     class MyModel(AuditUuidModelMixin, models.Model):
