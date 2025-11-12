@@ -13,7 +13,7 @@ class AuditUuidModelMixin(AuditModelMixin, models.Model):
     """
 
     id = UUIDAutoField(
-        blank=True,
+        blank=True,  # ignored when editable=False, but if removed will trigger migrations
         editable=False,
         help_text=_("System auto field. UUID primary key."),
         primary_key=True,

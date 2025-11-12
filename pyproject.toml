@@ -1,6 +1,6 @@
 [project]
 name = "django_audit_fields"
-version = "2.0.4"
+version = "2.0.5"
 description = "Add model fields to track creation and modification dates, users and more on save"
 readme = {file = "README.rst", content-type = "text/x-rst"}
 keywords = ["django", "clinicedc", "edc", "clinical trials", "research", "data management", "esource"]
@@ -115,7 +115,13 @@ exclude_lines = [
 ignore_directives = ["toctree", "code-block"]
 
 [dependency-groups]
-
+dev = [
+    "coverage>=7.11.3",
+    "django>=5.2.8",
+    "edc-test-settings>=2.0.0",
+    "tox>=4.32.0",
+    "tox-uv>=1.29.0",
+]
 docs = [
     "furo>=2025.7.19",
     "sphinx>=8.2.3",

@@ -14,6 +14,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.sites",
     "django.contrib.staticfiles",
+    "tests",
     f"{APP_NAME}.apps.AppConfig",
 ]
 ALLOWED_HOSTS = ["localhost"]
