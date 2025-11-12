@@ -246,7 +246,7 @@ wheels = [
 
 [[package]]
 name = "django-audit-fields"
-version = "2.0.5"
+version = "2.0.6"
 source = { editable = "." }
 dependencies = [
     { name = "django-revision" },
