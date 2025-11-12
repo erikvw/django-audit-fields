@@ -1,15 +1,6 @@
-[build-system]
-requires = ["uv_build>=0.8.2,<0.9.0"]
-build-backend = "uv_build"
-
-[tool.uv.build-backend]
-module-root = "src"
-source-exclude = ["bin"]
-namespace = false
-
 [project]
 name = "django_audit_fields"
-version = "2.0.3"
+version = "2.0.4"
 description = "Add model fields to track creation and modification dates, users and more on save"
 readme = {file = "README.rst", content-type = "text/x-rst"}
 keywords = ["django", "clinicedc", "edc", "clinical trials", "research", "data management", "esource"]
@@ -35,12 +26,22 @@ license-files = ["LICEN[CS]E*"]
 requires-python = ">=3.12"
 dependencies = ["django-revision>=2.0.0"]
 
-
 [project.urls]
 Homepage = "https://github.com/erikvw/django-audit-fields"
 Documentation = "https://github.com/erikvw/django-audit-fields/docs"
 Repository = "https://github.com/erikvw/django-audit-fields.git"
 Changelog = "https://github.com/erikvw/django-audit-fields/blob/main/CHANGES"
+
+
+[build-system]
+requires = ["uv_build>=0.9.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = "src"
+source-exclude = ["bin"]
+namespace = false
+
 
 [tool.ruff]
 line-length = 95
@@ -115,10 +116,6 @@ ignore_directives = ["toctree", "code-block"]
 
 [dependency-groups]
 
-develop = [
-    "django>=5.2.5",
-]
-
 docs = [
     "furo>=2025.7.19",
     "sphinx>=8.2.3",
@@ -128,14 +125,6 @@ docs = [
 lint = [
     "ruff>=0.12.5",
 ]
-
-test = [
-    "coverage>=7.10.3",
-    "django>=5.2",
-    "edc-test-settings>=1.1.2",
-    "tox-uv>=1.28.0",
-]
-
 
 [tool.uv.sources]
 django-audit-fields = { workspace = true }
